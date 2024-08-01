@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 17:28:38 by hbettal           #+#    #+#             */
-/*   Updated: 2024/07/30 00:56:17 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/07/30 22:44:16 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include <cub3d.h>
 
 void	draw_line(t_win *win, int player_x, int player_y, int pos_x, int pos_y, int color)
 {
@@ -67,8 +67,8 @@ void	creat_2d_world(t_win *win)
 	float i = 0;
 	while (i < 90)
 	{
-		pos_x = win->player->player_x + cos(win->player->player_angle + i * 0.01) * win->player->line_length;
-		pos_y = win->player->player_y + sin(win->player->player_angle + i * 0.01) * win->player->line_length;
+		pos_x = win->player->player_x + cos(win->player->player_angle * i ) * win->player->line_length;
+		pos_y = win->player->player_y + sin(win->player->player_angle * i ) * win->player->line_length;
 		draw_line(win, win->player->player_x, win->player->player_y, pos_x, pos_y, 0xFF);
 		i++;
 	}
@@ -92,13 +92,13 @@ void	init_function(char **av)
 	win->matrice = fill_matrice(av[1]);
 	win->img = &img;
 	win->map = &map;
-	win->mlx = mlx_init();
+	win->mlx = mlx_init(WIDTH, HEIGHT, "Cube", true);
 	if (!win->mlx)
 		(perror("error"), exit(1));
 	win->mlx_win = mlx_new_window(win->mlx, WIDTH, HEIGHT, "DOOM");
 	win->mlx_img = mlx_new_image(win->mlx, WIDTH, HEIGHT);
 	win->img_addrs = mlx_get_data_addr(win->mlx_img, \
-&win->img->bits_per_pixel, &win->img->size_line, &win->img->endian);
+		&win->img->bits_per_pixel, &win->img->size_line, &win->img->endian);
 	creat_2d_world(win);
 	mlx_hook(win->mlx_win, 2, 1L<<0, key_handler, win);
 	mlx_loop(win->mlx);

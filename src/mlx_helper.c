@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_helper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 20:27:06 by hbettal           #+#    #+#             */
-/*   Updated: 2024/07/30 00:03:39 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/07/30 21:03:34 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include <cub3d.h>
 
 void	my_mlx_pixel_put(t_win *data, int x, int y, int color)
 {
@@ -55,7 +55,6 @@ int	check_walls(int x, int y, t_win *win)
 
 int	key_handler(int key, t_win *win)
 {
-	printf("%d\n", key);
 	if (key == 13 && !check_walls(win->player->player_x, win->player->player_y - 10, win)) // 'w'
 		win->player->player_y -= 10;
 	else if (key == 1 && !check_walls(win->player->player_x, win->player->player_y + 10, win)) // 's'
