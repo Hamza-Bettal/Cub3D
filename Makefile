@@ -6,7 +6,7 @@
 #    By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/29 22:06:46 by hbettal           #+#    #+#              #
-#    Updated: 2024/07/30 22:18:19 by omghazi          ###   ########.fr        #
+#    Updated: 2024/08/10 18:57:43 by omghazi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ INCS			= $(INCS_DIR)cub3d.h $(INCS_DIR)types.h $(INCS_DIR)MLX42.h
 LIBFT_DIR		= lib/libft/
 LIBFT			= $(LIBFT_DIR)libft.a
 CFLAGS			= -I$(INCS_DIR) -I$(LIBFT_DIR) 
-CFLAGS			+= -Wall -Werror -Wextra -g -fsanitize=address
+CFLAGS			+= -Wall -Werror -Wextra -g
 NAME			= cub3d
 RM			= rm -rf
 ERASE			= \033[2K\r
@@ -26,7 +26,7 @@ BLUE			= \033[34m
 YELLOW			= \033[33m
 GREEN			= \033[32m
 END			= \033[0m
-LDFLAGS			= -lmlx -framework OpenGL -framework AppKit libmlx42.a -Iinclude -lglfw -L"$(shell brew --prefix glfw)/lib"
+LDFLAGS			= -framework OpenGL -framework AppKit libmlx42.a -Iinclude -lglfw -L"$(shell brew --prefix glfw)/lib"
 
 all:			$(NAME)
 

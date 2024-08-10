@@ -6,7 +6,7 @@
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 12:29:29 by hbettal           #+#    #+#             */
-/*   Updated: 2024/07/30 22:18:19 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/08/10 19:45:25 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,17 @@
 # include <fcntl.h>
 # include <limits.h>
 # include <math.h>
-# include <string.h>
+# include <errno.h>
+# include <stdbool.h>
 # include <types.h>
 # include <MLX42.h>
 
 /* FUNCTIONS */
-void	init_function(char **av);
-int		key_handler(int key, t_win *win);
-void	my_mlx_pixel_put(t_win *data, int x, int y, int color);
-void	creat_2d_world(t_win *win);
-size_t	ft_strlen(const char *str);
-char	*ft_strjoin(char const *s1, char const *s2);
-char	*ft_substr(const char *s, unsigned int start, size_t len);
-char	*ft_strdup(const char *src);
-char	**fill_matrice(char *file);
-
+int    check_map(t_map *map);
+t_parser     *parser(t_map *map, char *file);
+void clear_list(t_parser **lst, void (*del)(void *));
+void    delete_node(t_parser **lst, void (*del)(void *));
+void append_node(t_parser **lst, t_parser *node);
+t_parser *create_node(char *line, int len);
+int     init_player(t_player *player);
+int    init_map(t_map *map);
