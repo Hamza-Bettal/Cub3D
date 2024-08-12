@@ -25,6 +25,7 @@
 # include <MLX42.h>
 
 /* FUNCTIONS */
+int     create_table(t_map *map);
 int     map_height(t_parser *parser);
 int    check_map(t_map *map);
 t_parser     *parser(t_map *map, char *file);

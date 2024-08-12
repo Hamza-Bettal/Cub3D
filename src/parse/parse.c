@@ -6,7 +6,7 @@
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 16:00:20 by omghazi           #+#    #+#             */
-/*   Updated: 2024/08/12 16:56:26 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/08/12 18:49:25 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,12 @@ int     check_lines(t_parser *parse, int *n)
         return (SUCCESS);
 }
 
+int     check_point_side(t_parser *parse)
+{
+        (void)parse;
+        return (SUCCESS);
+}
+
 int    check_map(t_map *map)
 {
         t_parser *head;
@@ -141,6 +147,9 @@ int    check_map(t_map *map)
                                 return (printf("%s%s%s\n", RED_COLOR, "Invalid map\n", RESET), ERROR);
                         if (head->line[head->len - 2] != '1')
                                 return (printf("%s%s%s\n", RED_COLOR, "Invalid map\n", RESET), ERROR);
+                        if (ft_strchr(head->line, ' '))
+                                if (check_point_side(head) == ERROR)
+                                        return (printf("%s%s%s\n", RED_COLOR, "Invalid map", RESET), ERROR);
                 }
                 head = head->next;
         }
@@ -149,6 +158,6 @@ int    check_map(t_map *map)
         if (check_first_last(head))
                 return (ERROR);
         if (map_height(map->parser) <= 3)
-                return (printf("%s%s%s\n", RED_COLOR, "Invalid map\n", RESET), ERROR);
-        return (SUCCESS);
+                return (printf("%s%s%s\n", RED_COLOR, "Invalid map: small map\n", RESET), ERROR);
+        return (create_table(map));
 }
