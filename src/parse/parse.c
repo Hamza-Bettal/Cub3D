@@ -6,7 +6,7 @@
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 16:00:20 by omghazi           #+#    #+#             */
-/*   Updated: 2024/08/11 19:41:33 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/08/12 16:56:26 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,10 @@ int     check_lines(t_parser *parse, int *n)
         while (parse->line[i])
         {
                 if (!valid_chararcter(parse->line[i]))
+                {
+                        printf("%c\n", parse->line[i]);
                         return (printf("%s%s%s\n", RED_COLOR, "Invalid map : missing character\n", RESET), ERROR);
+                }
                 i++;
         }
         i = 0;
