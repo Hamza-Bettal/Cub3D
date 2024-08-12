@@ -6,7 +6,7 @@
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 20:35:41 by omghazi           #+#    #+#             */
-/*   Updated: 2024/08/10 21:45:59 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/08/11 10:02:11 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct s_parser t_parser;
 struct s_map
 {
 	char	**map;
+	int	largest_line;
 	void	*mlx;
 	void	*win;
 	t_img	*img;

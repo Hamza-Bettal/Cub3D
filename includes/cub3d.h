@@ -6,7 +6,7 @@
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 12:29:29 by hbettal           #+#    #+#             */
-/*   Updated: 2024/08/10 19:45:25 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/08/11 14:37:07 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,9 @@
 # include <MLX42.h>
 
 /* FUNCTIONS */
+int     map_height(t_parser *parser);
 int    check_map(t_map *map);
 t_parser     *parser(t_map *map, char *file);
-void clear_list(t_parser **lst, void (*del)(void *));
-void    delete_node(t_parser **lst, void (*del)(void *));
 void append_node(t_parser **lst, t_parser *node);
 t_parser *create_node(char *line, int len);
 int     init_player(t_player *player);

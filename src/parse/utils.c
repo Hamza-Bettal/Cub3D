@@ -6,7 +6,7 @@
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 16:38:29 by omghazi           #+#    #+#             */
-/*   Updated: 2024/08/10 16:43:30 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/08/11 18:52:26 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,28 +41,25 @@ void append_node(t_parser **lst, t_parser *node)
                 tmp = tmp->next;
         tmp->next = node;
 }
-
-void    delete_node(t_parser **lst, void (*del)(void *))
-{
-        t_parser        *tmp;
-        
-        if (!lst || !*lst)
-                return ;
-        tmp = *lst;
-        *lst = (*lst)->next;
-        del(tmp);
-}
-
-void clear_list(t_parser **lst, void (*del)(void *))
+int     map_height(t_parser *parser)
 {
         t_parser *tmp;
+        int     i;
+        int     flag;
 
-        if (!lst || !*lst)
-                return ;
-        while (*lst)
+        tmp = parser;
+        i = 0;
+        flag = 0;
+        while (tmp)
         {
-                tmp = *lst;
-                *lst = (*lst)->next;
-                del(tmp);
+                if (ft_strchr(tmp->line, '1') && !flag)
+                {
+                        flag = 1;
+                        i++;
+                }
+                if (flag)
+                        i++;
+                tmp = tmp->next;
         }
+        return (i);
 }
