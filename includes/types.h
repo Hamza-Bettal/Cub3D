@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 20:35:41 by omghazi           #+#    #+#             */
-/*   Updated: 2024/08/13 17:35:00 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/08/13 17:42:44 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,14 @@ typedef struct s_parser t_parser;
 
 struct s_map
 {
-	char		**map;
-	void		*mlx;
-	void		*win;
-	t_img		*img;
-	t_player	*player;
-	t_garbage	*garbage;
-	t_parser	*parser;
+	char	**map;
+	int	largest_line;
+	void	*mlx;
+	void	*win;
+	t_img	*img;
+	t_player *player;
+	t_garbage *garbage;
+	t_parser *parser;
 };
 
 struct s_parser
