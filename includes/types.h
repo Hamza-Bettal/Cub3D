@@ -6,7 +6,7 @@
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 20:35:41 by omghazi           #+#    #+#             */
-/*   Updated: 2024/08/13 18:18:27 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/08/13 21:10:54 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,12 @@ struct s_parser
 
 struct s_player
 {
-	t_cordonnees *pos;
-	double	speed;
-	double	rotation_speed;
-	double	rotation_angle;
-	double	walk_direction;
-	double 	turn_direction;
+	t_cordonnees	*pos;
+	double			speed;
+	double			rotation_speed;
+	double			rotation_angle;
+	double			walk_direction;
+	double 			turn_direction;
 };
 
 struct s_cordonnees
@@ -68,6 +68,6 @@ struct s_cordonnees
 
 struct s_garbage
 {
-	void *addr;
-	struct s_garbage *next;
+	void 				*addr;
+	struct s_garbage	*next;
 };

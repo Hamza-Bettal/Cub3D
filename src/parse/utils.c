@@ -3,43 +3,43 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 16:38:29 by omghazi           #+#    #+#             */
-/*   Updated: 2024/08/11 18:52:26 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/08/13 17:43:17 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-t_parser *create_node(char *line, int len)
+t_parser	*create_node(char *line, int len)
 {
-        t_parser *new;
+	t_parser *new;
 
-        new = malloc(sizeof(t_parser));
-        if (!new)
-                return (NULL);
-        new->line = ft_strdup(line);
-        new->len = len;
-        new->next = NULL;
-        return (new);
+	new = malloc(sizeof(t_parser));
+	if (!new)
+		return (NULL);
+	new->line = ft_strdup(line);
+	new->len = len;
+	new->next = NULL;
+	return (new);
 }
 
-void append_node(t_parser **lst, t_parser *node)
+void	append_node(t_parser **lst, t_parser *node)
 {
-        t_parser *tmp;
+	t_parser *tmp;
 
-        if (!lst || !node)
-                return ;
-        if (!*lst)
-        {
-                *lst = node;
-                return ;
-        }
-        tmp = *lst;
-        while (tmp->next)
-                tmp = tmp->next;
-        tmp->next = node;
+	if (!lst || !node)
+		return ;
+	if (!*lst)
+	{
+		*lst = node;
+		return ;
+	}
+	tmp = *lst;
+	while (tmp->next)
+		tmp = tmp->next;
+	tmp->next = node;
 }
 int     map_height(t_parser *parser)
 {
