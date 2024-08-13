@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   types.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 20:35:41 by omghazi           #+#    #+#             */
-/*   Updated: 2024/08/10 21:45:59 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/08/13 17:35:00 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,20 +31,20 @@ typedef struct s_parser t_parser;
 
 struct s_map
 {
-	char	**map;
-	void	*mlx;
-	void	*win;
-	t_img	*img;
-	t_player *player;
-	t_garbage *garbage;
-	t_parser *parser;
+	char		**map;
+	void		*mlx;
+	void		*win;
+	t_img		*img;
+	t_player	*player;
+	t_garbage	*garbage;
+	t_parser	*parser;
 };
 
 struct s_parser
 {
-	char	*line;
-	int		len;
-	struct s_parser *next;
+	char			*line;
+	int				len;
+	struct s_parser	*next;
 };
 
 struct s_img
@@ -54,12 +54,12 @@ struct s_img
 
 struct s_player
 {
-	t_cordonnees *pos;
-	double	speed;
-	double	rotation_speed;
-	double	rotation_angle;
-	double	walk_direction;
-	double 	turn_direction;
+	t_cordonnees	*pos;
+	double			speed;
+	double			rotation_speed;
+	double			rotation_angle;
+	double			walk_direction;
+	double 			turn_direction;
 };
 
 struct s_cordonnees
@@ -70,6 +70,6 @@ struct s_cordonnees
 
 struct s_garbage
 {
-	void *addr;
-	struct s_garbage *next;
+	void 				*addr;
+	struct s_garbage	*next;
 };

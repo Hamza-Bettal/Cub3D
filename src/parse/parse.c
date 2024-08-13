@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 16:00:20 by omghazi           #+#    #+#             */
-/*   Updated: 2024/08/10 21:32:31 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/08/11 20:08:41 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ t_parser     *parser(t_map *map, char *file)
         map->parser = parser;
         return (parser);
 }
-
 
 int     check_first_last(char *line)
 {
