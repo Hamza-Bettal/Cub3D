@@ -6,7 +6,7 @@
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 15:42:37 by omghazi           #+#    #+#             */
-/*   Updated: 2024/08/10 15:59:09 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/08/13 21:05:57 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,16 @@
 
 int    init_map(t_map *map)
 {
-        map->mlx = mlx_init(WIDTH, HEIGHT, "Cub3D", false);
+        map->height = map_height(map->parser) * TAIL_SIZE;
+        map->width =  50 * TAIL_SIZE;
+        map->mlx = mlx_init(map->width, map->height, "Cub3D", false);
         if (!map->mlx)
         {
                 printf(RED_COLOR"Error\nmlx_init failed\n"RESET);
                 return (ERROR);
         }
-        map->img = malloc(sizeof(t_img));
+        map->img = mlx_new_image(map->mlx, map->width, map->height);
         if (!map->img)
-        {
-                printf(RED_COLOR"Error\nmalloc failed\n"RESET);
-                return (ERROR);
-        }
-        map->img->img = mlx_new_image(map->mlx, WIDTH, HEIGHT);
-        if (!map->img->img)
         {
                 printf(RED_COLOR"Error\nmlx_new_image failed\n"RESET);
                 return (ERROR);
@@ -35,7 +31,7 @@ int    init_map(t_map *map)
         return (SUCCESS);
 }
 
-int     init_player(t_player *player)
+int     init_player(t_player *player, t_map *map)
 {
         player->pos = malloc(sizeof(t_cordonnees));
         if (!player->pos)
@@ -43,8 +39,8 @@ int     init_player(t_player *player)
                 printf(RED_COLOR"Error\nmalloc failed\n"RESET);
                 return (ERROR);
         }
-        player->pos->x = WIDTH / 2;
-        player->pos->y = HEIGHT / 2;
+        player->pos->x = map->width / 2;
+        player->pos->y = map->height / 2;
         player->speed = 2.0;
         player->rotation_speed = 2 * (M_PI / 180);
         player->rotation_angle = M_PI / 2;

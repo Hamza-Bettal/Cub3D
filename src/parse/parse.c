@@ -6,7 +6,7 @@
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 16:00:20 by omghazi           #+#    #+#             */
-/*   Updated: 2024/08/12 18:49:25 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/08/13 21:08:05 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_parser     *parser(t_map *map, char *file)
                                 || !ft_strncmp("F ", ft_strtrim(line, " "), 2) || !ft_strncmp("C ", ft_strtrim(line, " "), 2))
                 {
                         if (i >= 6)
-                                return (printf("%s%s%s\n", RED_COLOR, "Too many information\n", RESET), NULL);
+                                return (printf("%s%s%s\n", RED_COLOR, "Too many information", RESET), NULL);
                         i++;
                 }
                 if (!ft_strncmp("F ", line, 2) || !ft_strncmp("C ", line, 2))
@@ -41,7 +41,7 @@ t_parser     *parser(t_map *map, char *file)
                         while (*str)
                         {
                                 if (ft_atoi(*str) < 0 || ft_atoi(*str) > 255)
-                                        return (printf("%s%s%s\n", RED_COLOR, "Invalid color\n", RESET), NULL);
+                                        return (printf("%s%s%s\n", RED_COLOR, "Invalid color", RESET), NULL);
                                 str++;
                         }
                 }
@@ -51,7 +51,7 @@ t_parser     *parser(t_map *map, char *file)
                 line = get_next_line(fd);
         } 
         if (i != 6)
-                return (printf("%s%s%s\n", RED_COLOR, "Missing information\n", RESET), NULL);
+                return (printf("%s%s%s\n", RED_COLOR, "Missing information", RESET), NULL);
         close(fd);
         map->parser = parser;
         return (parser);
@@ -65,7 +65,7 @@ int     check_first_last(t_parser *head)
         while (head && head->line && head->line[i])
         {
                 if (head->line[i] != ' ' && head->line[i] != '1' && head->line[i] != '\0' && head->line[i] != '\n')
-                        return (printf("%s%s%s\n", RED_COLOR, "Invalid map\n", RESET), ERROR);
+                        return (printf("%s%s%s\n", RED_COLOR, "Invalid map", RESET), ERROR);
                 i++;
         }
         return (SUCCESS);
@@ -99,7 +99,7 @@ int     check_lines(t_parser *parse, int *n)
                         break;
         }
         if (parse->line[i] == '\0' || parse->line[i] == '\n')
-                return (printf("%s%s%s\n", RED_COLOR, "Invalid map : empty line\n", RESET), ERROR);
+                return (printf("%s%s%s\n", RED_COLOR, "Invalid map : empty line", RESET), ERROR);
         i = 0;
         while (parse->line[i])
         {
@@ -110,7 +110,7 @@ int     check_lines(t_parser *parse, int *n)
                         continue;
                 }
                 if ((parse->line[i] == 'N' || parse->line[i] == 'S' || parse->line[i] == 'W' || parse->line[i] == 'E') && *n)
-                        return (printf("%s%s%s\n", RED_COLOR, "Invalid map : there is more than one player\n", RESET), ERROR);
+                        return (printf("%s%s%s\n", RED_COLOR, "Invalid map : there is more than one player", RESET), ERROR);
                 i++;
         }
         return (SUCCESS);
@@ -118,7 +118,16 @@ int     check_lines(t_parser *parse, int *n)
 
 int     check_point_side(t_parser *parse)
 {
-        (void)parse;
+        char    *line;
+        int     i;
+
+        line = parse->next->line;
+        i = 0;
+        while (line[i])
+        {
+                
+                i++;
+        }
         return (SUCCESS);
 }
 
@@ -144,9 +153,9 @@ int    check_map(t_map *map)
                         if (check_lines(head, &n) == ERROR)
                                 return (ERROR);
                         if (ft_strtrim(head->line, " ")[0] != '1')
-                                return (printf("%s%s%s\n", RED_COLOR, "Invalid map\n", RESET), ERROR);
+                                return (printf("%s%s%s\n", RED_COLOR, "Invalid map", RESET), ERROR);
                         if (head->line[head->len - 2] != '1')
-                                return (printf("%s%s%s\n", RED_COLOR, "Invalid map\n", RESET), ERROR);
+                                return (printf("%s%s%s\n", RED_COLOR, "Invalid map", RESET), ERROR);
                         if (ft_strchr(head->line, ' '))
                                 if (check_point_side(head) == ERROR)
                                         return (printf("%s%s%s\n", RED_COLOR, "Invalid map", RESET), ERROR);

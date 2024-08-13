@@ -6,7 +6,7 @@
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 12:29:39 by hbettal           #+#    #+#             */
-/*   Updated: 2024/08/11 18:48:09 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/08/13 21:08:46 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,14 @@ int	main(int ac, char **av)
 
 	if (check_input(ac, av) == ERROR)
 		return (ERROR);
+	if (!parser(&map, av[1]))
+		return (ERROR);
+	if (check_map(&map) == ERROR)
+		return (ERROR);
 	if (init_map(&map) == ERROR)
 		return (ERROR);
-	if (init_player(&player) == ERROR)
-		return (free(map.img), ERROR);
-	if (!parser(&map, av[1]))
-		return (free(map.img), free(player.pos), ERROR);
-	if (check_map(&map) == ERROR)
-		return (free(map.img), free(player.pos), ERROR);
+	if (init_player(&player, &map) == ERROR)
+		return (ERROR);
 	mlx_loop(map.mlx);
 	return (EXIT_SUCCESS);
 }

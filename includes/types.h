@@ -6,7 +6,7 @@
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 20:35:41 by omghazi           #+#    #+#             */
-/*   Updated: 2024/08/11 10:02:11 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/08/13 18:18:27 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,11 @@ struct s_map
 {
 	char	**map;
 	int	largest_line;
+	int	height;
+	int	width;
 	void	*mlx;
 	void	*win;
-	t_img	*img;
+	void	*img;
 	t_player *player;
 	t_garbage *garbage;
 	t_parser *parser;
@@ -46,11 +48,6 @@ struct s_parser
 	char	*line;
 	int		len;
 	struct s_parser *next;
-};
-
-struct s_img
-{
-	void	*img;
 };
 
 struct s_player

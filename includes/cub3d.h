@@ -6,7 +6,7 @@
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 12:29:29 by hbettal           #+#    #+#             */
-/*   Updated: 2024/08/11 14:37:07 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/08/13 21:05:02 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,5 @@ int    check_map(t_map *map);
 t_parser     *parser(t_map *map, char *file);
 void append_node(t_parser **lst, t_parser *node);
 t_parser *create_node(char *line, int len);
-int     init_player(t_player *player);
+int     init_player(t_player *player, t_map *map);
 int    init_map(t_map *map);
