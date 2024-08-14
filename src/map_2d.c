@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 22:47:55 by hbettal           #+#    #+#             */
-/*   Updated: 2024/08/14 23:38:45 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/08/15 00:51:50 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ void	fill_matrice(t_map *map)
 	i = 0;
 	tmp = map->parser;
 	map->map = malloc(sizeof(char *) * (map_height(tmp) + 1));
-	if (!map->map)
-		printf("sala,");
+	tmp = tmp->next;
 	while (tmp)
 	{
 		map->map[i] = ft_strdup(tmp->line);
+		printf("--> %s\n", map->map[i]);
 		i++;
 		tmp = tmp->next;
 	}
@@ -37,16 +37,14 @@ void ray_caster(t_map *map)
 
 	fill_matrice(map);
 	y = -1;
-	printf("-------> %d\n ----------> %d\n", map->width, map->height);
 	while (++y < map->height)
 	{
 		x = -1;
 		while (++x < map->width)
 		{
-			printf("x= %d  ---  y= %d", x, y);
 			if (map->map[y / TAIL_SIZE][x / TAIL_SIZE] == '1')
-				mlx_put_pixel(map->img, x, y, 0);
-			else
+				mlx_put_pixel(map->img, x, y, 55656);
+			else if (map->map[y / TAIL_SIZE][x / TAIL_SIZE] == '0')
 				mlx_put_pixel(map->img, x, y, 0xFFFFFF);
 		}
 	}
