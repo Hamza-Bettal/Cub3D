@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 12:29:39 by hbettal           #+#    #+#             */
-/*   Updated: 2024/08/13 21:08:46 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/08/14 23:02:08 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ int	main(int ac, char **av)
 		return (ERROR);
 	if (init_player(&player, &map) == ERROR)
 		return (ERROR);
+	ray_caster(&map);
 	mlx_loop(map.mlx);
 	return (EXIT_SUCCESS);
 }

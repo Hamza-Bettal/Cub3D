@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 16:00:20 by omghazi           #+#    #+#             */
-/*   Updated: 2024/08/13 21:11:05 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/08/14 23:34:28 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,7 +166,7 @@ int    check_map(t_map *map)
                 return (printf("%s%s%s\n", RED_COLOR, "Invalid map : there is no player\n", RESET), ERROR);
         if (check_first_last(head))
                 return (ERROR);
-        if (map_height(map->parser) <= 3)
+        if (map_height(map->parser) < 3)
                 return (printf("%s%s%s\n", RED_COLOR, "Invalid map: small map\n", RESET), ERROR);
         return (create_table(map));
 }

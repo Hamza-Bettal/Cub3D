@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 16:38:29 by omghazi           #+#    #+#             */
-/*   Updated: 2024/08/13 17:43:17 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/08/14 23:16:04 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,6 @@ int     map_height(t_parser *parser)
                         i++;
                 tmp = tmp->next;
         }
+		i--;
         return (i);
 }

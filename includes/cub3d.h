@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 12:29:29 by hbettal           #+#    #+#             */
-/*   Updated: 2024/08/13 21:05:02 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/08/14 23:02:39 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,12 @@
 # include <MLX42.h>
 
 /* FUNCTIONS */
-int     create_table(t_map *map);
-int     map_height(t_parser *parser);
-int    check_map(t_map *map);
-t_parser     *parser(t_map *map, char *file);
-void append_node(t_parser **lst, t_parser *node);
-t_parser *create_node(char *line, int len);
-int     init_player(t_player *player, t_map *map);
-int    init_map(t_map *map);
+int			create_table(t_map *map);
+int			map_height(t_parser *parser);
+int			check_map(t_map *map);
+t_parser	*parser(t_map *map, char *file);
+void		append_node(t_parser **lst, t_parser *node);
+t_parser	*create_node(char *line, int len);
+int			init_player(t_player *player, t_map *map);
+int			init_map(t_map *map);
+void		ray_caster(t_map *map);

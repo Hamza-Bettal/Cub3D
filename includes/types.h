@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   types.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 20:35:41 by omghazi           #+#    #+#             */
-/*   Updated: 2024/08/13 21:10:54 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/08/14 22:53:51 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ typedef struct s_parser t_parser;
 struct s_map
 {
 	char	**map;
-	int	largest_line;
-	int	height;
-	int	width;
+	int		largest_line;
+	int		height;
+	int		width;
 	void	*mlx;
 	void	*win;
 	void	*img;
@@ -45,9 +45,9 @@ struct s_map
 
 struct s_parser
 {
-	char	*line;
-	int		len;
-	struct s_parser *next;
+	char			*line;
+	int				len;
+	struct s_parser	*next;
 };
 
 struct s_player
