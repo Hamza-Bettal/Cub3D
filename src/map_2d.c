@@ -6,7 +6,7 @@
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 22:47:55 by hbettal           #+#    #+#             */
-/*   Updated: 2024/08/15 14:54:37 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/08/15 15:28:59 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,8 @@ void ray_caster(t_map *map)
 		}
 	}
 	mlx_put_pixel(map->img, map->player->pos->x, map->player->pos->y, 0x000000);
-	draw_line(map->player->pos->x, map->player->pos->y, x1, y1, map, 0x000000);
+	int i = 0;
+	while (++i < 30)
+		draw_line(map->player->pos->x, map->player->pos->y, x1 + i, y1 + i, map, 0x000000);
 	mlx_image_to_window(map->mlx, map->img, 0, 0);
 }
