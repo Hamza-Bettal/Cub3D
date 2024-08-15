@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 12:29:39 by hbettal           #+#    #+#             */
-/*   Updated: 2024/08/14 23:02:08 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/08/15 02:52:58 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	check_input(int ac, char **av)
 
 int	main(int ac, char **av)
 {	
-	t_map	map;
+	t_map		map;
 	t_player	player;
 
 	if (check_input(ac, av) == ERROR)
@@ -56,7 +56,9 @@ int	main(int ac, char **av)
 		return (ERROR);
 	if (init_player(&player, &map) == ERROR)
 		return (ERROR);
+	fill_matrice(&map);
 	ray_caster(&map);
+	mlx_key_hook(map.mlx, key_handler, &map);
 	mlx_loop(map.mlx);
 	return (EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 12:29:29 by hbettal           #+#    #+#             */
-/*   Updated: 2024/08/14 23:02:39 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/08/15 02:41:08 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,3 +34,5 @@ t_parser	*create_node(char *line, int len);
 int			init_player(t_player *player, t_map *map);
 int			init_map(t_map *map);
 void		ray_caster(t_map *map);
+void        key_handler(mlx_key_data_t key, void *param);
+void    	fill_matrice(t_map *map);
