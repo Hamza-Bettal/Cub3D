@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   types.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 20:35:41 by omghazi           #+#    #+#             */
-/*   Updated: 2024/08/14 22:53:51 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/08/15 13:44:05 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # define SUCCESS	 0
 # define HEIGHT         1000
 # define WIDTH          1000
-# define TAIL_SIZE      40
+# define TAIL_SIZE      35
 
 typedef struct s_player t_player;
 typedef struct s_map t_map;

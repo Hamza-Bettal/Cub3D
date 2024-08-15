@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 15:42:37 by omghazi           #+#    #+#             */
-/*   Updated: 2024/08/15 02:55:53 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/08/15 14:56:16 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 int    init_map(t_map *map)
 {
 	map->height = map_height(map->parser) * TAIL_SIZE;
-	map->width =  10 * TAIL_SIZE;
-	printf("%d\n", map->height);
+	map->width =  33 * TAIL_SIZE;
+
 	map->mlx = mlx_init(map->width, map->height, "Cub3D", false);
 	if (!map->mlx)
 	{
@@ -66,6 +66,7 @@ int     init_player(t_player *player, t_map *map)
 		printf(RED_COLOR"Error\nmalloc failed\n"RESET);
 		return (ERROR);
 	}
+	map->player = player;
 	find_player_pos(map);
 	player->speed = 2.0;
 	player->rotation_speed = 2 * (M_PI / 180);

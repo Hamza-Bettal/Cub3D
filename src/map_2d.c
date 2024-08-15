@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_2d.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 22:47:55 by hbettal           #+#    #+#             */
-/*   Updated: 2024/08/15 02:40:48 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/08/15 14:54:37 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,26 @@ void	fill_matrice(t_map *map)
 {
 	int			i;
 	t_parser	*tmp;
+	int	flag;
 
 	i = 0;
 	tmp = map->parser;
 	map->map = malloc(sizeof(char *) * (map_height(tmp) + 1));
 	tmp = tmp->next;
+	flag = 0;
 	while (tmp)
 	{
-		map->map[i] = ft_strdup(tmp->line);
-		i++;
+		if (ft_strchr(tmp->line, '1') && !flag)
+		{
+			flag = 1;
+			map->map[i] = ft_strdup(tmp->line);
+			i++;
+		}
+		if (flag)
+		{
+			map->map[i] = ft_strdup(tmp->line);
+			i++;
+		}
 		tmp = tmp->next;
 	}
 }
@@ -67,15 +78,15 @@ void ray_caster(t_map *map)
 	while (++y < map->height)
 	{
 		x = -1;
-		while (++x < map->width)
+		while (++x <= map->width)
 		{
-			if (map->map[y / TAIL_SIZE][x / TAIL_SIZE] == '1')
-				mlx_put_pixel(map->img, x, y, 0xFFFFFFFF);
+			if (map->map[y / TAIL_SIZE][x / TAIL_SIZE] == '1' || map->map[y / TAIL_SIZE][x / TAIL_SIZE] == ' ')
+				mlx_put_pixel(map->img, x, y, 0xdc143cdc);
 			else
-				mlx_put_pixel(map->img, x, y, 0xFFFFF);
+				mlx_put_pixel(map->img, x, y, 0xffffffff);
 		}
 	}
-	mlx_put_pixel(map->img, map->player->pos->x, map->player->pos->y, 0xFFFFFFFF);
-	draw_line(map->player->pos->x, map->player->pos->y, x1, y1, map, 0xFFFFFFFF);
+	mlx_put_pixel(map->img, map->player->pos->x, map->player->pos->y, 0x000000);
+	draw_line(map->player->pos->x, map->player->pos->y, x1, y1, map, 0x000000);
 	mlx_image_to_window(map->mlx, map->img, 0, 0);
 }
