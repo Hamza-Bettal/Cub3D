@@ -1,8 +1,0 @@
-{
-    "files.associations": {
-        "math.h": "c",
-        "fcntl.h": "c",
-        "unistd.h": "c",
-        "types.h": "c"
-    }
-}
