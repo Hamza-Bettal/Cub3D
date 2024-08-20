@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 15:42:37 by omghazi           #+#    #+#             */
-/*   Updated: 2024/08/15 14:56:16 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/08/20 04:14:32 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void    find_player_pos(t_map *map)
 			if (tmp->line[i] == 'N')
 			{
 				map->player->pos->x = TAIL_SIZE * i + TAIL_SIZE / 2;
-				map->player->pos->y = TAIL_SIZE * j + TAIL_SIZE / 2;
+				map->player->pos->y = TAIL_SIZE * (j + 1) + TAIL_SIZE / 2;
 				return ;
 			}
 			i++;
