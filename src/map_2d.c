@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 22:47:55 by hbettal           #+#    #+#             */
-/*   Updated: 2024/08/20 04:24:27 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/08/20 04:46:06 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ void draw_line(int x0, int y0, int x1, int y1, t_map *map, int color)
 		mlx_put_pixel(map->img, x0, y0, color);
 		if (x0 == x1 && y0 == y1)
 			break;
+		if (is_wall(x0, y0, map))
+			break;
 		int e2 = 2 * err;
 		if (e2 > -dy)
 		{
@@ -80,8 +82,6 @@ void ray_caster(t_map *map)
 {
 	int	x;
 	int	y;
-	int x1 = map->player->pos->x + cos(map->player->rotation_angle) * 40;
-	int y1 = map->player->pos->y + sin(map->player->rotation_angle) * 40;
 
 	y = -1;
 	while (++y < map->height)
@@ -96,6 +96,15 @@ void ray_caster(t_map *map)
 			}
 		}
 	mlx_put_pixel(map->img, map->player->pos->x, map->player->pos->y, 0x000000);
-	draw_line(map->player->pos->x, map->player->pos->y, x1 + i, y1 + i, map, 0x000000);
+	double i = -0.5;
+	int x1;
+	int y1;
+	while (i < 0.5)
+	{
+		x1 = map->player->pos->x + cos(map->player->rotation_angle + i) * 2000;
+		y1 = map->player->pos->y + sin(map->player->rotation_angle + i) * 2000;
+		draw_line(map->player->pos->x, map->player->pos->y, x1, y1, map, 0x000000);
+		i += 0.05;
+	}
 	mlx_image_to_window(map->mlx, map->img, 0, 0);
 }
