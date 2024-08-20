@@ -6,7 +6,7 @@
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 16:00:20 by omghazi           #+#    #+#             */
-/*   Updated: 2024/08/15 23:46:07 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/08/19 11:34:47 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,5 +172,5 @@ int    check_map(t_map *map)
                 return (ERROR);
         if (map_height(map->parser) < 3)
                 return (printf("%s%s%s\n", RED_COLOR, "Invalid map: small map\n", RESET), ERROR);
-        return (create_table(map));
+        return (stock_largest_line(map));
 }

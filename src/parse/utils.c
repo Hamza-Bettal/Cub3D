@@ -6,7 +6,7 @@
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 16:38:29 by omghazi           #+#    #+#             */
-/*   Updated: 2024/08/15 13:27:29 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/08/16 22:43:01 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	append_node(t_parser **lst, t_parser *node)
 		tmp = tmp->next;
 	tmp->next = node;
 }
+
 int     map_height(t_parser *parser)
 {
         t_parser *tmp;
@@ -61,5 +62,6 @@ int     map_height(t_parser *parser)
                         i++;
                 tmp = tmp->next;
         }
-        return (i--);
+	i--;
+        return (i);
 }
