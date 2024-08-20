@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 22:47:55 by hbettal           #+#    #+#             */
-/*   Updated: 2024/08/20 06:13:22 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/08/20 08:14:59 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,9 +93,9 @@ void	ray_drawer(t_map *map)
 		y = -1;
 		while (++y <= map->height - 1)
 		{
-			if (x - (map->width / 2 - 1) < 100)
+			if (x - (map->width / 2 - 1) <= 200)
 				to_draw = (map->height - map->linesize[x - (map->width / 2 - 1)]) / 2;
-			if (y <= to_draw || (x - (map->width / 2 - 1) < 100 && y >= map->linesize[x - (map->width / 2 - 1)]))
+			if (y <= to_draw || (x - (map->width / 2 - 1) <= 200 && y >= map->linesize[x - (map->width / 2 - 1)]))
 				mlx_put_pixel(map->img, x, y, 0xFF);
 			else
 				mlx_put_pixel(map->img, x, y, 0xFFFFFFFF);
@@ -113,7 +113,7 @@ void ray_caster(t_map *map)
 	while (++y < map->height)
 	{
 		x = -1;
-		while (++x <= map->width / 3)
+		while (++x <= map->width / 2)
 		{
 			if (map->map[y / TAIL_SIZE][x / TAIL_SIZE] == '1' || map->map[y / TAIL_SIZE][x / TAIL_SIZE] == ' ')
 				mlx_put_pixel(map->img, x, y, 0xdc143cdc);
@@ -126,14 +126,16 @@ void ray_caster(t_map *map)
 	int	j;
 	int x1;
 	int y1;
+	j = i * 100 + 50;
 	while (i < 0.5)
 	{
-		j = i * 100 + 50;
 		x1 = map->player->pos->x + cos(map->player->rotation_angle + i) * 5000;
 		y1 = map->player->pos->y + sin(map->player->rotation_angle + i) * 5000;
 		map->linesize[j] = draw_line(map->player->pos->x, map->player->pos->y, x1, y1, map, 0x000000);
 		map->linesize[j] = 10000 / map->linesize[j] + 10;
-		printf("%d\n", map->linesize[j]);
+		j++;
+		map->linesize[j] = map->linesize[j - 1];
+		j++;
 		i += 0.01;
 	}
 	ray_drawer(map);
