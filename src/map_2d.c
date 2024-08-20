@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 22:47:55 by hbettal           #+#    #+#             */
-/*   Updated: 2024/08/20 04:46:06 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/08/20 05:02:39 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,10 +101,10 @@ void ray_caster(t_map *map)
 	int y1;
 	while (i < 0.5)
 	{
-		x1 = map->player->pos->x + cos(map->player->rotation_angle + i) * 2000;
-		y1 = map->player->pos->y + sin(map->player->rotation_angle + i) * 2000;
+		x1 = map->player->pos->x + cos(map->player->rotation_angle + i) * 5000;
+		y1 = map->player->pos->y + sin(map->player->rotation_angle + i) * 5000;
 		draw_line(map->player->pos->x, map->player->pos->y, x1, y1, map, 0x000000);
-		i += 0.05;
+		i += 0.01;
 	}
 	mlx_image_to_window(map->mlx, map->img, 0, 0);
 }
