@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 15:42:37 by omghazi           #+#    #+#             */
-/*   Updated: 2024/08/20 05:27:43 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/08/20 06:19:27 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int     init_player(t_player *player, t_map *map)
 	find_player_pos(map);
 	player->speed = 2.0;
 	player->rotation_speed = 2 * (M_PI / 180);
-	player->rotation_angle = M_PI / 2;
+	player->rotation_angle = 0;
 	player->walk_direction = 0;
 	player->turn_direction = 0;
 	return (SUCCESS);
