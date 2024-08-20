@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 16:00:20 by omghazi           #+#    #+#             */
-/*   Updated: 2024/08/19 11:34:47 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/08/20 13:00:07 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,9 +125,9 @@ int     check_point_side(t_parser *parse)
         tmp = parse;
         while (tmp->line[i])
         {
-                if (tmp->line[i] == ' ')
+                if (tmp->next && tmp->line[i] == ' ')
                 {
-                        if (tmp->next->line[i] == '0' || tmp->line[i - 1] == '0' || tmp->line[i + 1] == '0')
+                        if (i > 0 && (tmp->next->line[i] == '0' || tmp->line[i - 1] == '0' || tmp->line[i + 1] == '0'))
                                 return (ERROR);
                 }
                 i++;
