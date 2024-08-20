@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   types.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 20:35:41 by omghazi           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/08/19 11:25:19 by omghazi          ###   ########.fr       */
+=======
+/*   Updated: 2024/08/20 08:14:13 by hbettal          ###   ########.fr       */
+>>>>>>> 7b231891652cbf34723b43e72e8302f5da14aa1b
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +35,17 @@ typedef struct s_parser t_parser;
 
 struct s_map
 {
-	char	**map;
-	int		largest_line;
-	int		height;
-	int		width;
-	void	*mlx;
-	void	*win;
-	void	*img;
-	t_player *player;
-	t_garbage *garbage;
-	t_parser *parser;
+	char		**map;
+	int			largest_line;
+	int			height;
+	int			width;
+	void		*mlx;
+	void		*win;
+	void		*img;
+	int			linesize[200];
+	t_player	*player;
+	t_garbage	*garbage;
+	t_parser	*parser;
 };
 
 struct s_parser
@@ -62,8 +67,8 @@ struct s_player
 
 struct s_cordonnees
 {
-	int x;
-	int y;
+	double x;
+	double y;
 };
 
 struct s_garbage
