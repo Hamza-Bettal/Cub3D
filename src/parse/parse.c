@@ -6,7 +6,7 @@
 /*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 16:00:20 by omghazi           #+#    #+#             */
-/*   Updated: 2024/08/15 13:35:04 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/08/15 23:46:07 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,14 +118,18 @@ int     check_lines(t_parser *parse, int *n)
 
 int     check_point_side(t_parser *parse)
 {
-        char    *line;
         int     i;
+        t_parser *tmp;
 
-        line = parse->next->line;
         i = 0;
-        while (line[i])
+        tmp = parse;
+        while (tmp->line[i])
         {
-                
+                if (tmp->line[i] == ' ')
+                {
+                        if (tmp->next->line[i] == '0' || tmp->line[i - 1] == '0' || tmp->line[i + 1] == '0')
+                                return (ERROR);
+                }
                 i++;
         }
         return (SUCCESS);

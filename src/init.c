@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 15:42:37 by omghazi           #+#    #+#             */
-/*   Updated: 2024/08/20 04:14:32 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/08/20 04:23:16 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int    init_map(t_map *map)
 {
 	map->height = map_height(map->parser) * TAIL_SIZE;
-	map->width =  33 * TAIL_SIZE;
+	map->width =  10 * TAIL_SIZE;
 
 	map->mlx = mlx_init(map->width, map->height, "Cub3D", false);
 	if (!map->mlx)
