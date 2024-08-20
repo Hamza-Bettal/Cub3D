@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 20:35:41 by omghazi           #+#    #+#             */
-/*   Updated: 2024/08/20 04:14:18 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/08/20 05:56:32 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ struct s_map
 	void		*mlx;
 	void		*win;
 	void		*img;
+	int			linesize[100];
 	t_player	*player;
 	t_garbage	*garbage;
 	t_parser	*parser;

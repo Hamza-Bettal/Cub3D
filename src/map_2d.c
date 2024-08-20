@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 22:47:55 by hbettal           #+#    #+#             */
-/*   Updated: 2024/08/20 05:02:39 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/08/20 06:13:22 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,14 @@ void	fill_matrice(t_map *map)
 	}
 }
 
-void draw_line(int x0, int y0, int x1, int y1, t_map *map, int color)
+int draw_line(int x0, int y0, int x1, int y1, t_map *map, int color)
 {
 	int dx = abs(x1 - x0);
 	int dy = abs(y1 - y0);
 	int sx = (x0 < x1) ? 1 : -1;
 	int sy = (y0 < y1) ? 1 : -1;
 	int err = dx - dy;
+	int	i = 0;
 
 	while (1)
 	{
@@ -54,7 +55,7 @@ void draw_line(int x0, int y0, int x1, int y1, t_map *map, int color)
 		if (x0 == x1 && y0 == y1)
 			break;
 		if (is_wall(x0, y0, map))
-			break;
+			return (i);
 		int e2 = 2 * err;
 		if (e2 > -dy)
 		{
@@ -66,7 +67,9 @@ void draw_line(int x0, int y0, int x1, int y1, t_map *map, int color)
 			err += dx;
 			y0 += sy;
 		}
+		i++;
 	}
+	return (5000);
 }
 
 bool	is_wall(int x, int y, t_map *map)
@@ -78,6 +81,29 @@ bool	is_wall(int x, int y, t_map *map)
 	return (false);
 }
 
+void	ray_drawer(t_map *map)
+{
+	int	x;
+	int	y;
+	int to_draw;
+
+	x = map->width / 2 - 1;
+	while (++x < map->width)
+	{
+		y = -1;
+		while (++y <= map->height - 1)
+		{
+			if (x - (map->width / 2 - 1) < 100)
+				to_draw = (map->height - map->linesize[x - (map->width / 2 - 1)]) / 2;
+			if (y <= to_draw || (x - (map->width / 2 - 1) < 100 && y >= map->linesize[x - (map->width / 2 - 1)]))
+				mlx_put_pixel(map->img, x, y, 0xFF);
+			else
+				mlx_put_pixel(map->img, x, y, 0xFFFFFFFF);
+		}
+	}
+	mlx_image_to_window(map->mlx, map->img, 0, 0);
+}
+
 void ray_caster(t_map *map)
 {
 	int	x;
@@ -87,24 +113,29 @@ void ray_caster(t_map *map)
 	while (++y < map->height)
 	{
 		x = -1;
-		while (++x <= map->width)
+		while (++x <= map->width / 3)
 		{
 			if (map->map[y / TAIL_SIZE][x / TAIL_SIZE] == '1' || map->map[y / TAIL_SIZE][x / TAIL_SIZE] == ' ')
 				mlx_put_pixel(map->img, x, y, 0xdc143cdc);
 			else
 				mlx_put_pixel(map->img, x, y, 0xffffffff);
-			}
 		}
+	}
 	mlx_put_pixel(map->img, map->player->pos->x, map->player->pos->y, 0x000000);
 	double i = -0.5;
+	int	j;
 	int x1;
 	int y1;
 	while (i < 0.5)
 	{
+		j = i * 100 + 50;
 		x1 = map->player->pos->x + cos(map->player->rotation_angle + i) * 5000;
 		y1 = map->player->pos->y + sin(map->player->rotation_angle + i) * 5000;
-		draw_line(map->player->pos->x, map->player->pos->y, x1, y1, map, 0x000000);
+		map->linesize[j] = draw_line(map->player->pos->x, map->player->pos->y, x1, y1, map, 0x000000);
+		map->linesize[j] = 10000 / map->linesize[j] + 10;
+		printf("%d\n", map->linesize[j]);
 		i += 0.01;
 	}
+	ray_drawer(map);
 	mlx_image_to_window(map->mlx, map->img, 0, 0);
 }
