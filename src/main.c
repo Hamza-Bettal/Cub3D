@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 12:29:39 by hbettal           #+#    #+#             */
-/*   Updated: 2024/08/20 19:16:57 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/08/21 15:43:00 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,10 @@ int	main(int ac, char **av)
 		return (ERROR);
 	if (init_map(&map) == ERROR)
 		return (ERROR);
+	fill_matrice(&map);
 	if (init_player(&player, &map) == ERROR)
 		return (ERROR);
-	fill_matrice(&map);
-	for (int i = 0; i < map_height(map.parser); i++)
-		printf("%s\n", map.map[i]);
+
 	ray_caster(&map);
 	mlx_key_hook(map.mlx, key_handler, &map);
 	mlx_loop(map.mlx);

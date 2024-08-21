@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 15:42:37 by omghazi           #+#    #+#             */
-/*   Updated: 2024/08/20 19:18:48 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/08/21 15:44:14 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,7 @@
 int    init_map(t_map *map)
 {
 	map->height = map_height(map->parser) * TAIL_SIZE;
-	map->width =  (map->largest_line + 2) * TAIL_SIZE;
-	
-	printf("here %d\n", map->width);
+	map->width =  (map->largest_line) * TAIL_SIZE;
 	map->mlx = mlx_init(map->width, map->height, "Cub3D", false);
 	if (!map->mlx)
 	{
@@ -37,24 +35,21 @@ void    find_player_pos(t_map *map)
 {
 	int			i;
 	int			j;
-	t_parser	*tmp;
 
-	tmp = map->parser->next;
 	j = 0;
-	while (tmp)
+	while (map->map[j])
 	{
 		i = 0;
-		while (tmp->line[i])
+		while (map->map[j][i])
 		{
-			if (tmp->line[i] == 'N')
+			if (map->map[j][i] == 'N' || map->map[j][i] == 'S' || map->map[j][i] == 'E' || map->map[j][i] == 'W')
 			{
-				map->player->pos->x = TAIL_SIZE * i + TAIL_SIZE / 2;
-				map->player->pos->y = TAIL_SIZE * (j + 1) + TAIL_SIZE / 2;
+				map->player->pos->x = TAIL_SIZE * i  + TAIL_SIZE / 2;
+				map->player->pos->y = TAIL_SIZE * j + TAIL_SIZE / 2;
 				return ;
 			}
 			i++;
 		}
-		tmp = tmp->next;
 		j++;
 	}
 }

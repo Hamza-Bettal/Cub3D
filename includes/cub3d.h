@@ -26,6 +26,7 @@
 # include <MLX42.h>
 
 /* FUNCTIONS */
+void    *calloc_dyali(size_t size, char *str);
 int     stock_largest_line(t_map *map);
 int			create_table(t_map *map);
 int			map_height(t_parser *parser);

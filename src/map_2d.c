@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_2d.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 22:47:55 by hbettal           #+#    #+#             */
-/*   Updated: 2024/08/20 19:19:43 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/08/21 15:44:51 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,11 @@ void	fill_matrice(t_map *map)
 	flag = 0;
 	while (tmp)
 	{
-		if (ft_strchr(tmp->line, '1') && !flag)
-		{
+		if (tmp->line[0] != '\n' && !flag)
 			flag = 1;
-			map->map[i] = ft_strdup(tmp->line);
-			i++;
-		}
 		if (flag)
 		{
-			map->map[i] = ft_strdup(tmp->line);
+			map->map[i] = calloc_dyali(map->largest_line + 1, tmp->line);
 			i++;
 		}
 		tmp = tmp->next;
@@ -113,12 +109,12 @@ void ray_caster(t_map *map)
 	while (++y < map->height)
 	{
 		x = -1;
-		while (++x < map->width)
+		while (++x <= map->width)
 		{
-			if (map->map[y / TAIL_SIZE][x / TAIL_SIZE] == '1' || map->map[y / TAIL_SIZE][x / TAIL_SIZE] == ' ')
-				mlx_put_pixel(map->img, x, y, 0xdc143cdc);
-			else
+			if (map->map[y / TAIL_SIZE][x / TAIL_SIZE] == '0' || map->map[y / TAIL_SIZE][x / TAIL_SIZE] == 'N')
 				mlx_put_pixel(map->img, x, y, 0xffffffff);
+			else
+				mlx_put_pixel(map->img, x, y, 0x00000000);
 		}
 	}
 	mlx_put_pixel(map->img, map->player->pos->x, map->player->pos->y, 0x00000000);
@@ -131,7 +127,7 @@ void ray_caster(t_map *map)
 	{
 		x1 = map->player->pos->x + cos(map->player->rotation_angle + i) * 5000;
 		y1 = map->player->pos->y + sin(map->player->rotation_angle + i) * 5000;
-		draw_line(map->player->pos->x, map->player->pos->y, x1, y1, map, 0x000000);
+		draw_line(map->player->pos->x, map->player->pos->y, x1, y1, map, 0x0000ffff);
 		// map->linesize[j] = 10000 / map->linesize[j] + 10;
 		// j++;
 		// map->linesize[j] = map->linesize[j - 1];

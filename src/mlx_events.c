@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_events.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 01:59:45 by hbettal           #+#    #+#             */
-/*   Updated: 2024/08/20 18:06:45 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/08/21 13:41:37 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,5 @@ void key_handler(mlx_key_data_t key, void *param)
         return ;
     mlx_delete_image(map->mlx, map->img);
     map->img = mlx_new_image(map->mlx, map->width, map->height);
-    printf("x ----> %f || y ----> %f\n", map->player->pos->x, map->player->pos->y);
-    printf("--> %d\n", map->width);
     ray_caster(map);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 16:00:20 by omghazi           #+#    #+#             */
-/*   Updated: 2024/08/20 13:00:07 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/08/21 13:17:28 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,7 +158,7 @@ int    check_map(t_map *map)
                                 return (ERROR);
                         if (ft_strtrim(head->line, " ")[0] != '1')
                                 return (printf("%s%s%s\n", RED_COLOR, "Invalid map", RESET), ERROR);
-                        if (head->line[head->len - 2] != '1')
+                        if (head->line[head->len - 2] != '1' && head->line[head->len - 2] != ' ')
                                 return (printf("%s%s%s\n", RED_COLOR, "Invalid map", RESET), ERROR);
                         if (ft_strchr(head->line, ' '))
                                 if (check_point_side(head) == ERROR)
