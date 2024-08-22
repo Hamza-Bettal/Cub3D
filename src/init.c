@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 15:42:37 by omghazi           #+#    #+#             */
-/*   Updated: 2024/08/21 15:44:14 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/08/21 15:48:04 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int    init_map(t_map *map)
 {
 	map->height = map_height(map->parser) * TAIL_SIZE;
 	map->width =  (map->largest_line) * TAIL_SIZE;
+	printf("height = %d || width = %d\n", map->height, map->width);
 	map->mlx = mlx_init(map->width, map->height, "Cub3D", false);
 	if (!map->mlx)
 	{

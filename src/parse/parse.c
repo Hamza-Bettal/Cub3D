@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 16:00:20 by omghazi           #+#    #+#             */
-/*   Updated: 2024/08/21 13:17:28 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/08/21 16:31:57 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ t_parser     *parser(t_map *map, char *file)
         while (line)
         {
                 if (!ft_strncmp("NO ", ft_strtrim(line, " "), 3) || !ft_strncmp("SO ", ft_strtrim(line, " "), 3) \
-                        || !ft_strncmp("WE ", ft_strtrim(line, " "), 3) || !ft_strncmp("EA ", ft_strtrim(line, " "), 3) \
-                                || !ft_strncmp("F ", ft_strtrim(line, " "), 2) || !ft_strncmp("C ", ft_strtrim(line, " "), 2))
+                || !ft_strncmp("WE ", ft_strtrim(line, " "), 3) || !ft_strncmp("EA ", ft_strtrim(line, " "), 3) \
+                || !ft_strncmp("F ", ft_strtrim(line, " "), 2) || !ft_strncmp("C ", ft_strtrim(line, " "), 2))
                 {
                         if (i >= 6)
                                 return (printf("%s%s%s\n", RED_COLOR, "Too many information", RESET), NULL);

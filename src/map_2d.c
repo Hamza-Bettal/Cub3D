@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_2d.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 22:47:55 by hbettal           #+#    #+#             */
-/*   Updated: 2024/08/21 15:44:51 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/08/22 13:56:21 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,22 +36,19 @@ void	fill_matrice(t_map *map)
 	}
 }
 
-int draw_line(int x0, int y0, int x1, int y1, t_map *map, int color)
+void draw_line(int x0, int y0, int x1, int y1, t_map *map, int color)
 {
 	int dx = abs(x1 - x0);
 	int dy = abs(y1 - y0);
 	int sx = (x0 < x1) ? 1 : -1;
 	int sy = (y0 < y1) ? 1 : -1;
 	int err = dx - dy;
-	int	i = 0;
 
 	while (1)
 	{
 		mlx_put_pixel(map->img, x0, y0, color);
 		if (x0 == x1 && y0 == y1)
 			break;
-		if (is_wall(x0, y0, map))
-			return (i);
 		int e2 = 2 * err;
 		if (e2 > -dy)
 		{
@@ -63,9 +60,7 @@ int draw_line(int x0, int y0, int x1, int y1, t_map *map, int color)
 			err += dx;
 			y0 += sy;
 		}
-		i++;
 	}
-	return (5000);
 }
 
 bool	is_wall(int x, int y, t_map *map)
@@ -75,6 +70,44 @@ bool	is_wall(int x, int y, t_map *map)
 	if (map->map[y / TAIL_SIZE][x / TAIL_SIZE] == '1')
 		return (true);
 	return (false);
+}
+
+void	find_horizontal_intersections(t_map *map, double angle)
+{
+	t_cordonnees	step;
+	t_cordonnees	intersx;
+	t_cordonnees	check;
+	t_cordonnees	next_touch;
+
+	angle = remainder(angle, 2 * M_PI);
+	if (angle < 0)
+		angle += 2 * M_PI;
+	intersx.y = floor(map->player->pos->y / TAIL_SIZE) * TAIL_SIZE;
+	intersx.x = map->player->pos->x + (intersx.y - map->player->pos->y) / tan(angle);
+	step.y = TAIL_SIZE;
+	if (!(angle > 0 && angle < M_PI))
+		step.y *= -1;
+	step.x = TAIL_SIZE / tan(angle);
+	if (step.x > 0 && (angle > (M_PI / 2) && angle < (1.5 * M_PI)))
+		step.x *= -1;
+	if (step.x < 0 && !(angle > (M_PI / 2) && angle < (1.5 * M_PI)))
+		step.x *= -1;
+	next_touch.x = intersx.x;
+	next_touch.y = intersx.y;
+	while (next_touch.x >= 0 && next_touch.x < map->width && next_touch.y >= 0 && next_touch.y < map->height)
+	{
+		check.x = next_touch.x;
+		check.y = next_touch.y;
+		if (!(angle > 0 && angle < M_PI))
+			check.y--;
+		if (is_wall(check.x, check.y, map))
+			break;
+		next_touch.x += step.x;
+		next_touch.y += step.y;
+	}
+	if (check.y <= -1)
+		check.y = 0;
+	draw_line(map->player->pos->x, map->player->pos->y, check.x, check.y, map, 0xffffff);
 }
 
 void	ray_drawer(t_map *map)
@@ -118,16 +151,10 @@ void ray_caster(t_map *map)
 		}
 	}
 	mlx_put_pixel(map->img, map->player->pos->x, map->player->pos->y, 0x00000000);
-	double i = -0.5;
-	int	j;
-	int x1;
-	int y1;
-	j = i * 100 + 50;
-	while (i < 0.5)
+	double i = -0.45;
+	while (i < 0.45)
 	{
-		x1 = map->player->pos->x + cos(map->player->rotation_angle + i) * 5000;
-		y1 = map->player->pos->y + sin(map->player->rotation_angle + i) * 5000;
-		draw_line(map->player->pos->x, map->player->pos->y, x1, y1, map, 0x0000ffff);
+		find_horizontal_intersections(map, map->player->rotation_angle + i);
 		// map->linesize[j] = 10000 / map->linesize[j] + 10;
 		// j++;
 		// map->linesize[j] = map->linesize[j - 1];
