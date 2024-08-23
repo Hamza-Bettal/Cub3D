@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_2d.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 22:47:55 by hbettal           #+#    #+#             */
-/*   Updated: 2024/08/23 18:14:46 by omghazi          ###   ########.fr       */
+/*   Updated: 2024/08/23 21:43:30 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,13 +107,46 @@ void	find_horizontal_intersections_for_cub3d_by_lbznaz_for_common_core(t_map *ma
 	}
 	if (check.y <= -1)
 		check.y = 0;
-	draw_line(map->player->pos->x, map->player->pos->y, check.x, check.y, map, 0xffffff);
+	map->h_ray = &check;
 }
 
-// void	find_vertical_intersections_for_cub3d_by_lbznaz_for_common_core(t_map *map, double angle)
-// {
-	
-// }
+void	find_vertical_intersections_for_cub3d_by_lbznaz_for_common_core(t_map *map, double angle)
+{
+	t_cordonnees	step;
+	t_cordonnees	intersx;
+	t_cordonnees	check;
+	t_cordonnees	next_touch;
+
+	angle = remainder(angle, 2 * M_PI);
+	if (angle < 0)
+		angle += 2 * M_PI;
+	intersx.x = floor(map->player->pos->x / TAIL_SIZE) * TAIL_SIZE;
+	intersx.y = map->player->pos->y + (intersx.x - map->player->pos->x) * tan(angle);
+	step.x = TAIL_SIZE;
+	if (angle > M_PI / 2 && angle < M_PI * 1.5)
+		step.x *= -1;
+	step.y = TAIL_SIZE * tan(angle);
+	if (step.y > 0 && !(angle > 0 && angle < M_PI))
+		step.y *= -1;
+	if (step.y < 0 && (angle > 0 && angle < M_PI))
+		step.y *= -1;
+	next_touch.x = intersx.x;
+	next_touch.y = intersx.y;
+	while (next_touch.x >= 0 && next_touch.x < map->width && next_touch.y >= 0 && next_touch.y < map->height)
+	{
+		check.x = next_touch.x;
+		check.y = next_touch.y;
+		if ((angle > M_PI / 2 && angle < M_PI * 1.5))
+			check.x--;
+		if (is_wall(check.x, check.y, map))
+			break;
+		next_touch.x += step.x;
+		next_touch.y += step.y;
+	}
+	if (check.x <= -1)
+		check.x = 0;
+	map->v_ray = &check;
+}
 
 void	ray_drawer(t_map *map)
 {
@@ -138,6 +171,21 @@ void	ray_drawer(t_map *map)
 	mlx_image_to_window(map->mlx, map->img, 0, 0);
 }
 
+void	distance_cmp(t_map *map)
+{
+	long h_distance;
+	long v_distance;
+
+	h_distance = sqrt(pow(map->h_ray->x, 2) - pow(map->h_ray->y, 2));
+	v_distance = sqrt(pow(map->v_ray->x, 2) - pow(map->v_ray->y, 2));
+	
+	if (v_distance < h_distance)
+	{
+		map->v_ray->x = map->h_ray->x;
+		map->v_ray->y = map->h_ray->y;
+	}
+}
+
 void ray_caster(t_map *map)
 {
 	int	x;
@@ -160,7 +208,9 @@ void ray_caster(t_map *map)
 	while (i < 0.45)
 	{
 		find_horizontal_intersections_for_cub3d_by_lbznaz_for_common_core(map, map->player->rotation_angle + i);
-		// find_vertical_intersections_for_cub3d_by_lbznaz_for_common_core(map, map->player->rotation_angle + i);
+		find_vertical_intersections_for_cub3d_by_lbznaz_for_common_core(map, map->player->rotation_angle + i);
+		distance_cmp(map);
+		draw_line(map->player->pos->x, map->player->pos->y, map->v_ray->x, map->v_ray->y, map, 0xFFFFFF);
 		i += 0.01;
 	}
 	// ray_drawer(map);

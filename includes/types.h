@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 20:35:41 by omghazi           #+#    #+#             */
-/*   Updated: 2024/08/20 12:58:17 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/08/23 21:18:22 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ struct s_map
 	t_player	*player;
 	t_garbage	*garbage;
 	t_parser	*parser;
+	t_cordonnees	*h_ray;
+	t_cordonnees	*v_ray;
 };
 
 struct s_parser
