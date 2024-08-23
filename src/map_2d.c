@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_2d.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: omghazi <omghazi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 22:47:55 by hbettal           #+#    #+#             */
-/*   Updated: 2024/08/22 13:56:21 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/08/23 18:14:46 by omghazi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ bool	is_wall(int x, int y, t_map *map)
 	return (false);
 }
 
-void	find_horizontal_intersections(t_map *map, double angle)
+void	find_horizontal_intersections_for_cub3d_by_lbznaz_for_common_core(t_map *map, double angle)
 {
 	t_cordonnees	step;
 	t_cordonnees	intersx;
@@ -110,6 +110,11 @@ void	find_horizontal_intersections(t_map *map, double angle)
 	draw_line(map->player->pos->x, map->player->pos->y, check.x, check.y, map, 0xffffff);
 }
 
+// void	find_vertical_intersections_for_cub3d_by_lbznaz_for_common_core(t_map *map, double angle)
+// {
+	
+// }
+
 void	ray_drawer(t_map *map)
 {
 	int	x;
@@ -120,7 +125,7 @@ void	ray_drawer(t_map *map)
 	while (++x < map->width)
 	{
 		y = -1;
-		while (++y <= map->height - 1)
+		while (++y < map->height)
 		{
 			if (x - (map->width / 2 - 1) <= 200)
 				to_draw = (map->height - map->linesize[x - (map->width / 2 - 1)]) / 2;
@@ -154,11 +159,8 @@ void ray_caster(t_map *map)
 	double i = -0.45;
 	while (i < 0.45)
 	{
-		find_horizontal_intersections(map, map->player->rotation_angle + i);
-		// map->linesize[j] = 10000 / map->linesize[j] + 10;
-		// j++;
-		// map->linesize[j] = map->linesize[j - 1];
-		// j++;
+		find_horizontal_intersections_for_cub3d_by_lbznaz_for_common_core(map, map->player->rotation_angle + i);
+		// find_vertical_intersections_for_cub3d_by_lbznaz_for_common_core(map, map->player->rotation_angle + i);
 		i += 0.01;
 	}
 	// ray_drawer(map);
